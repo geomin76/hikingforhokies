@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
+import { apiKey } from './secrets'
 
 const mapStyles = {
   width: '100%',
   height: '100%'
 };
+
+let data = [
+  {title: "hello", lat: 37.415058, lng: -76.790558, desc: "hello world heheh"},
+  {title: "h", lat: 38.415058, lng: -76.790558, desc: "hello world"},
+  {title: "e", lat: 39.415058, lng: -76.790558, desc: "hello world gw"},
+  {title: "l", lat: 40.415058, lng: -76.790558, desc: "hello world thjwthtwh"},
+  {title: "q", lat: 41.415058, lng: -76.790558, desc: "hello world rjttejtrej"},
+  {title: "v", lat: 42.415058, lng: -76.790558, desc: "hello world werwetwet"},
+]
 
 export class MapContainer extends Component {
   state = {
@@ -41,23 +51,17 @@ onClose = props => {
         }}
         >
 
-      <Marker
-        onClick={this.onMarkerClick}
-        name={'Hello'}
-        position={{lat: 35.768096, lng:-78.791373}}
-      />
+          {
+            data.map((x) => 
+            <Marker 
+            onClick={this.onMarkerClick}
+            name={x.title}
+            position={{lat: x.lat, lng: x.lng}}
+            text={x.desc}
+            />
+            )
+          }
 
-      <Marker
-        onClick={this.onMarkerClick}
-        name={'Test'}
-        position={{lat: 34.768096, lng:-79.791373}}
-      />
-
-      <Marker
-        onClick={this.onMarkerClick}
-        name={'Another'}
-        position={{lat: 33.768096, lng:-79.791373}}
-      />
 
       <InfoWindow
         marker={this.state.activeMarker}
@@ -66,6 +70,7 @@ onClose = props => {
       >
         <div>
           <p>{this.state.selectedPlace.name}</p>
+          <p>{this.state.selectedPlace.text}</p>
         </div>
       </InfoWindow>
 
@@ -77,5 +82,5 @@ onClose = props => {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyBCmIRRZ0LEhB3h2mj0yu22-35k2yHw1eA'
+  apiKey: apiKey()
 })(MapContainer);
