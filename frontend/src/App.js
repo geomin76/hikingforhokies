@@ -7,14 +7,16 @@ const mapStyles = {
   height: '100%'
 };
 
-let data = [
-  {title: "hello", lat: 37.415058, lng: -76.790558, desc: "hello world heheh"},
-  {title: "h", lat: 38.415058, lng: -76.790558, desc: "hello world"},
-  {title: "e", lat: 39.415058, lng: -76.790558, desc: "hello world gw"},
-  {title: "l", lat: 40.415058, lng: -76.790558, desc: "hello world thjwthtwh"},
-  {title: "q", lat: 41.415058, lng: -76.790558, desc: "hello world rjttejtrej"},
-  {title: "v", lat: 42.415058, lng: -76.790558, desc: "hello world werwetwet"},
-]
+let data = [];
+
+fetch("http://localhost:5000/getData")
+.then(res => res.json())
+.then(
+  (result) => {
+    // console.log(result)
+    data = result
+  }
+)
 
 export class MapContainer extends Component {
   state = {
@@ -43,11 +45,11 @@ onClose = props => {
     return (
       <Map
         google={this.props.google}
-        zoom={6}
+        zoom={10}
         style={mapStyles}
         initialCenter={{
-         lat: 35.765174,
-         lng: -78.711569
+         lat: 37.227703,
+         lng: -80.422073
         }}
         >
 
@@ -57,7 +59,8 @@ onClose = props => {
             onClick={this.onMarkerClick}
             name={x.title}
             position={{lat: x.lat, lng: x.lng}}
-            text={x.desc}
+            desc={x.desc}
+            img={x.link}
             />
             )
           }
@@ -69,8 +72,10 @@ onClose = props => {
         onClose={this.onClose}
       >
         <div>
-          <p>{this.state.selectedPlace.name}</p>
-          <p>{this.state.selectedPlace.text}</p>
+          <h3>{this.state.selectedPlace.name}</h3>
+          <img src={this.state.selectedPlace.img}></img>
+          <p>{this.state.selectedPlace.desc}</p>
+          <p>Visit this place <a href={this.state.selectedPlace.link}>here</a></p>
         </div>
       </InfoWindow>
 
