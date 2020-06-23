@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import { apiKey } from './secrets'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 const mapStyles = {
   width: '100%',
@@ -9,14 +10,18 @@ const mapStyles = {
 
 let data = [];
 
-fetch("http://ec2-100-26-161-255.compute-1.amazonaws.com:5000/getData")
-.then(res => res.json())
-.then(
-  (result) => {
-    // console.log(result)
-    data = result
-  }
-)
+async function getData() {
+  await fetch("http://ec2-100-26-161-255.compute-1.amazonaws.com:5000/getData")
+  .then(res => res.json())
+  .then(
+    (result) => {
+      // console.log(result)
+      data = result
+    }
+  )
+}
+
+getData()
 
 export class MapContainer extends Component {
   state = {
@@ -61,10 +66,15 @@ onClose = props => {
             position={{lat: x.lat, lng: x.lng}}
             desc={x.desc}
             img={x.link}
+            map={x.map}
+            dist={x.dist}
+            elev={x.elev}
+            diff={x.diff}
             />
             )
           }
 
+          {/* css */}
 
       <InfoWindow
         marker={this.state.activeMarker}
@@ -75,7 +85,16 @@ onClose = props => {
           <h3>{this.state.selectedPlace.name}</h3>
           <img src={this.state.selectedPlace.img}></img>
           <p>{this.state.selectedPlace.desc}</p>
-          <p>Visit this place <a href={this.state.selectedPlace.link}>here</a></p>
+          {this.state.selectedPlace.dist ?
+        <div>
+          <p>Hiking: {this.state.selectedPlace.dist}</p>
+          <p>Elevation gain: {this.state.selectedPlace.elev}</p>
+          <p>Difficulty: {this.state.selectedPlace.diff}</p>
+        </div>
+        :<p>There is no hiking involved in this location.</p>
+        }
+
+        {/* figure out link */}
         </div>
       </InfoWindow>
 
