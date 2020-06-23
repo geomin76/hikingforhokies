@@ -9,7 +9,7 @@ const mapStyles = {
 
 let data = [];
 
-fetch("http://localhost:5000/getData")
+fetch("http://ec2-100-26-161-255.compute-1.amazonaws.com:5000/getData")
 .then(res => res.json())
 .then(
   (result) => {
