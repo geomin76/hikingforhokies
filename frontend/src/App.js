@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import { apiKey } from './secrets'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import styles from './style.module.css';
 
 const mapStyles = {
   width: '100%',
@@ -82,20 +83,34 @@ onClose = props => {
         onClose={this.onClose}
       >
         <div>
-          <h3>{this.state.selectedPlace.name}</h3>
-          <img src={this.state.selectedPlace.img}></img>
-          <p>{this.state.selectedPlace.desc}</p>
-          {this.state.selectedPlace.dist ?
-        <div>
-          <p>Hiking: {this.state.selectedPlace.dist}</p>
-          <p>Elevation gain: {this.state.selectedPlace.elev}</p>
-          <p>Difficulty: {this.state.selectedPlace.diff}</p>
-        </div>
-        :<p>There is no hiking involved in this location.</p>
-        }
+          <div style={{fontSize:13, marginTop:-15, marginBottom:-5, width:200, lineHeight:1.4}}>
+            <h3>{this.state.selectedPlace.name}</h3>
+            <img style={{ height:125, width:200}} src={this.state.selectedPlace.img}/>
+            <h5 style={{fontSize:13, width:200, lineHeight:1.4}}>{this.state.selectedPlace.desc}</h5>
+            {this.state.selectedPlace.dist ?
+          <div style={{fontSize:12, lineHeight:0.2}}>
+            <p>Hiking: {this.state.selectedPlace.dist}</p>
+            <p>Elevation gain: {this.state.selectedPlace.elev}</p>
+            <p>Difficulty: {this.state.selectedPlace.diff}</p>
+          </div>
+          :<p style={{fontSize:12, lineHeight:1}}>There is no hiking involved in this location.</p>
+          }
 
-        {/* figure out link */}
+          <Router>
+            {/* <Route path="/places" render={() => (window.location = this.state.selectedPlace.map)}/>
+            <a href="/places" target="_blank">Visit this place here</a> */}
+            <a href="/places" target="_blank">Visit this place here</a>
+            <Route path="/place" component={() => {
+              window.location.href = this.state.selectedPlace.map;
+            }}/>
+          </Router>
+
+          
+          
+          {/* figure out link */}
+          </div>
         </div>
+        
       </InfoWindow>
 
 
