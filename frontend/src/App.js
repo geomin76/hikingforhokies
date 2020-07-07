@@ -3,6 +3,7 @@ import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import { apiKey } from './secrets'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import styles from './style.module.css';
+import { ExternalLink } from 'react-external-link';
 
 const mapStyles = {
   width: '100%',
@@ -28,7 +29,7 @@ export class MapContainer extends Component {
   state = {
     showingInfoWindow: false,  //Hides or the shows the infoWindow
     activeMarker: {},          //Shows the active marker upon click
-    selectedPlace: {}          //Shows the infoWindow to the selected place upon a marker
+    selectedPlace: {}       //Shows the infoWindow to the selected place upon a marker
   };
 
   onMarkerClick = (props, marker, e) =>
@@ -38,14 +39,16 @@ export class MapContainer extends Component {
     showingInfoWindow: true
   });
 
-onClose = props => {
-  if (this.state.showingInfoWindow) {
-    this.setState({
-      showingInfoWindow: false,
-      activeMarker: null
-    });
-  }
-};
+  onClose = props => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      });
+    }
+  };
+
+
 
   render() {
     return (
@@ -67,7 +70,7 @@ onClose = props => {
             position={{lat: x.lat, lng: x.lng}}
             desc={x.desc}
             img={x.link}
-            map={x.map}
+            map_link={x.map}
             dist={x.dist}
             elev={x.elev}
             diff={x.diff}
@@ -96,18 +99,7 @@ onClose = props => {
           :<p style={{fontSize:12, lineHeight:1}}>There is no hiking involved in this location.</p>
           }
 
-          <Router>
-            {/* <Route path="/places" render={() => (window.location = this.state.selectedPlace.map)}/>
-            <a href="/places" target="_blank">Visit this place here</a> */}
-            <a href="/places" target="_blank">Visit this place here</a>
-            <Route path="/place" component={() => {
-              window.location.href = this.state.selectedPlace.map;
-            }}/>
-          </Router>
-
-          
-          
-          {/* figure out link */}
+          <a href={this.state.selectedPlace.map_link} target="_blank">Visit this place</a>
           </div>
         </div>
         
