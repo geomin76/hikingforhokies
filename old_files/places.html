@@ -1,0 +1,921 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta charset="utf-8">
+  <style>
+    #map {
+      height: 100%;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+  </head>
+
+  <body>
+
+    <div id="map"></div>
+    <script>
+      var map;
+
+      function initMap() {
+        var windrock = {
+          lat: 37.412191,
+          lng: -80.522801
+        };
+        var baldknob = {
+          lat: 37.354731,
+          lng: -80.538570
+        };
+        var sharptop = {
+          lat: 37.443283,
+          lng: -79.609412
+        };
+        var vt = {
+          lat: 37.227703,
+          lng: -80.422073
+        };
+        var brushcreek = {
+          lat: 37.464858,
+          lng: -81.064068
+        };
+        var roanokeoverlook = {
+          lat: 37.211439,
+          lng: -79.935703
+        };
+        var mcafee = {
+          lat: 37.380033,
+          lng: -80.089914
+        };
+        var fallingsprings = {
+          lat: 37.867556,
+          lng: -79.947090
+        };
+        var newrivercave = {
+          lat: 37.265912,
+          lng: -80.601070
+        };
+        var dragontooth = {
+          lat: 37.378687,
+          lng: -80.156135
+        };
+        var roanokestar = {
+          lat: 37.250683,
+          lng: -79.932331
+        };
+        var cascades = {
+          lat: 37.353782,
+          lng: -80.599246
+        };
+        var compreserve = {
+          lat: 37.237728,
+          lng: -80.460487
+        };
+        var ricefield = {
+          lat: 37.365656,
+          lng: -80.749188
+        };
+        var kirby = {
+          lat: 37.863576,
+          lng: -79.990093
+        };
+        var devil = {
+          lat: 36.817238,
+          lng: -82.622951
+        };
+        var humpback = {
+          lat: 37.968818,
+          lng: -78.896737
+        };
+        var bearfence = {
+          lat: 38.452492,
+          lng: -78.466995
+        };
+        var ravensroost = {
+          lat: 37.933663,
+          lng: -78.952914
+        };
+        var bluehole = {
+          lat: 38.506573,
+          lng: -79.047717
+        };
+        var bigmeadows = {
+          lat: 38.518098,
+          lng: -78.437274
+        };
+        var littlestony = {
+          lat: 38.605713,
+          lng: -78.366406
+        };
+        var darkhollow = {
+          lat: 38.519656,
+          lng: -78.430966
+        };
+        var mtrogers = {
+          lat: 36.634463,
+          lng: -81.509543
+        };
+
+        var kellyknob = {
+          lat: 37.372662,
+          lng: -80.446169
+        };
+        var buffalomtn = {
+          lat: 36.787266,
+          lng: -80.450262
+        };
+        var tinkers = {
+          lat: 37.457585,
+          lng: -80.017309
+        };
+        var marylandheights = {
+          lat: 39.330642,
+          lng: -77.734350
+        };
+        var oldrag = {
+          lat: 38.570506,
+          lng: -78.300058
+        };
+        var channels = {
+          lat: 36.864710,
+          lng: -81.947040
+        };
+        var crabtree = {
+          lat: 35.812166,
+          lng: -82.144015
+        };
+        var hangingrockob = {
+          lat: 37.509848,
+          lng: -80.438016
+        };
+        var endless = {
+          lat:38.059813,
+          lng:-81.049195
+        };
+        var cathederal = {
+          lat:38.154036,
+          lng: -81.179721
+        };
+        var marbleyard = {
+          lat: 37.571126,
+          lng:-79.491629
+        };
+        var moore = {
+          lat: 36.388632,
+          lng:-80.279537
+        };
+        var hanging = {
+          lat: 36.394950,
+          lng:-80.266422
+        };
+        var sandcave = {
+          lat: 36.652154, 
+          lng:-83.435575
+        };
+
+
+
+
+
+        var iceland = {
+          lat: 64.84653099831185, lng: -22.369457993953827
+        };
+        var iceland1 = {
+          lat: 64.848022, lng: -23.919556
+        };
+        var iceland2 = {
+          lat: 64.881001, lng:-23.985390
+        };
+        var iceland3 = {
+         lat: 64.770126,lng:-23.621265
+        };
+        var iceland4 = {
+          lat:64.841451,lng:-23.397548
+        };
+        var iceland5 = {
+          lat:64.927452,lng:-23.306860
+        };
+        var iceland6 = {
+          lat: 64.120401, lng:-21.876250
+        };
+        var iceland7 = {
+          lat:63.616038,lng:-19.994102
+        };
+        var iceland8 = {
+          lat:63.690736,lng:-19.540779
+        };
+        var iceland9 = {
+          lat:64.016310,lng:-16.967380
+        };
+        var iceland10 = {
+          lat:64.127700,lng:-16.200346
+        };
+        var iceland11 = {
+          lat: 64.045893,lng:-16.178798
+        };
+        var iceland12 = {
+          lat:63.565573,lng:-19.607788
+        };
+        var iceland13 = {
+          lat:63.529538,lng:-19.512932
+        };
+        var iceland14 = {
+          lat:63.525700,lng:-19.491409
+        };
+        var sevilla = {
+          lat:37.377772, lng:-6.000085
+        };
+        var sevilla1 = {
+          lat:37.379554, lng:-6.000561
+        };
+        var sevilla2 = {
+          lat:37.384439, lng:-5.991270
+        };
+        var tangier = {
+          lat:35.787703, lng:-5.810104
+        };
+        var chef = {
+          lat:35.169602, lng:-5.264518
+        };
+        var chef1 = {
+          lat:35.171198, lng:-5.260655
+        };
+        var chef2 = {
+          lat:35.168620, lng:-5.261256
+        };
+        var asilah = {
+          lat:35.462019, lng:-6.035986
+        };
+        var asilah2 = {
+          lat:35.466790, lng:-6.039001
+        };
+        var madrid = {
+          lat:40.498087, lng:-3.568220
+        };
+        var amsterdam = {
+          lat:52.378572, lng:4.899221
+        };
+        var amsterdam1 = {
+          lat:52.364678, lng:4.879603
+        };
+        var calgary = {
+          lat:51.109447, lng:-114.005500
+        };
+        var banff = {
+          lat:51.246797, lng:-115.846126
+        };
+        var banff1 = {
+          lat:51.327975, lng:-116.181119
+        };
+        var banff2 = {
+          lat:51.393445, lng:-116.272427
+        };
+        var banff3 = {
+          lat:51.416214,lng:-116.213180
+        };
+        var banff4 = {
+          lat:51.678266, lng:-116.465960
+        };
+        var banff5 = {
+          lat:51.691991, lng:-116.469616
+        };
+        var banff6 = {
+          lat:51.716792, lng:-116.505835
+        };
+        var banff7 = {
+          lat:52.177159, lng:-117.055299
+        };
+        var banff8 = {
+          lat:52.229628,lng:-117.247162
+        };
+        var banff9 = {
+          lat:52.729447,lng:-117.642539
+        };
+        var banff10 = {
+          lat:52.700524,lng:-117.868101
+        };
+        var banff11 = {
+          lat:52.870722, lng:-118.081826
+        };
+        var philipines = {
+          lat:10.265202, lng:123.986749
+        };
+        var philipines1 = {
+          lat:10.307423, lng:123.980274
+        };
+        var japan = {
+          lat:34.382313, lng:132.453956
+        };
+        var japan1 = {
+          lat:33.589024, lng:130.407137
+        };
+        var japan2 = {
+          lat:32.748352, lng:129.869008
+        };
+        var korea = {
+          lat:33.499055, lng:126.615563
+        };
+        var korea1 = {
+          lat:33.499055, lng:126.615563
+        };
+        var korea2 = {
+          lat:37.456741, lng:126.441656
+        };
+        var korea3 = {
+          lat:37.617229, lng:126.962029
+        };
+        var korea4 = {
+          lat:37.564230, lng:126.938413
+        };
+        var korea5 = {
+          lat:37.038068, lng:127.301322
+        };
+        var china = {
+          lat:39.317165, lng:117.359371
+        };
+        var china1 = {
+          lat:39.881698, lng:116.408436
+        };
+        var china2 = {
+          lat:39.999484, lng:116.388598
+        };
+
+
+        // add montreal, ottawa, niagara falls, quebec,
+        // colorado, cali, boston, acadia, bar harbor, gettysburg, philly, nyc, saratoga springs, vermont, princeton, richmond, norfolk, obx, charleston, raleigh, myrtle beach, columbia, asheville, atlanta, savannah, everglades, florida keys, miami,orlando, nassau, washington dc, baltimore
+        // idaho, wyoming, new mexico, grand canyon, joshua tree
+
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {
+            lat: 51.213062, 
+            lng: -2.483089
+          },
+          zoom: 2
+        });
+
+
+
+        var marker = new google.maps.Marker({
+          position: windrock,
+          map: map,
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
+        var marker1 = new google.maps.Marker({
+          position: baldknob,
+          map: map,
+        });
+        marker1.addListener('click', function() {
+          infowindow1.open(map, marker1);
+        });
+
+        var marker2 = new google.maps.Marker({
+          position: sharptop,
+          map: map,
+        });
+        marker2.addListener('click', function() {
+          infowindow2.open(map, marker2);
+        });
+
+
+        var marker3 = new google.maps.Marker({
+          position: brushcreek,
+          map: map,
+        });
+        marker3.addListener('click', function() {
+          infowindow3.open(map, marker3);
+        });
+
+        var marker4 = new google.maps.Marker({
+          position: roanokeoverlook,
+          map: map,
+        });
+        marker4.addListener('click', function() {
+          infowindow4.open(map, marker4);
+        });
+
+
+        var marker5 = new google.maps.Marker({
+          position: mcafee,
+          map: map,
+        });
+        marker5.addListener('click', function() {
+          infowindow5.open(map, marker5);
+        });
+
+
+        var marker6 = new google.maps.Marker({
+          position: fallingsprings,
+          map: map,
+        });
+        marker6.addListener('click', function() {
+          infowindow6.open(map, marker6);
+        });
+
+        var marker7 = new google.maps.Marker({
+          position: newrivercave,
+          map: map,
+        });
+        marker7.addListener('click', function() {
+          infowindow7.open(map, marker7);
+        });
+
+
+        var marker8 = new google.maps.Marker({
+          position: dragontooth,
+          map: map,
+          title: "Dragon's Tooth"
+        });
+        marker8.addListener('click', function() {
+          infowindow8.open(map, marker8);
+        });
+
+
+        var marker9 = new google.maps.Marker({
+          position: roanokestar,
+          map: map,
+          title: 'Roanoke Star'
+        });
+        marker9.addListener('click', function() {
+          infowindow9.open(map, marker9);
+        });
+
+
+        var marker10 = new google.maps.Marker({
+          position: cascades,
+          map: map,
+          title: "Cascade Falls"
+        });
+        marker10.addListener('click', function() {
+          infowindow10.open(map, marker10);
+        });
+
+        var marker11 = new google.maps.Marker({
+          position: compreserve,
+          map: map,
+          title: "Community Park and Natural Area"
+        });
+        marker11.addListener('click', function() {
+          infowindow11.open(map, marker11);
+        });
+
+        var marker12 = new google.maps.Marker({
+          position: ricefield,
+          map: map,
+          title: 'Rice Fields'
+        });
+        marker12.addListener('click', function() {
+          infowindow12.open(map, marker12);
+        });
+
+
+        var marker13 = new google.maps.Marker({
+          position: kirby,
+          map: map,
+          title: "Kirby's Bridge"
+        });
+        marker13.addListener('click', function() {
+          infowindow13.open(map, marker13);
+        });
+
+        var marker14 = new google.maps.Marker({
+          position: devil,
+          map: map,
+          title: "Devil's Bathtub"
+        });
+        marker14.addListener('click', function() {
+          infowindow14.open(map, marker14);
+        });
+
+        var marker15 = new google.maps.Marker({
+          position: humpback,
+          map: map,
+          title: "Humpback Rocks"
+        });
+        marker15.addListener('click', function() {
+          infowindow15.open(map, marker15);
+        });
+
+        var marker16 = new google.maps.Marker({
+          position: bearfence,
+          map: map,
+          title: "Bearfence Mountain"
+        });
+        marker16.addListener('click', function() {
+          infowindow16.open(map, marker16);
+        });
+
+        var marker17 = new google.maps.Marker({
+          position: ravensroost,
+          map: map,
+          title: "Ravens Roost Overlook"
+        });
+        marker17.addListener('click', function() {
+          infowindow17.open(map, marker17);
+        });
+
+        var marker18 = new google.maps.Marker({
+          position: bluehole,
+          map: map,
+          title: "Blue Hole"
+        });
+        marker18.addListener('click', function() {
+          infowindow18.open(map, marker18);
+        });
+
+        var marker19 = new google.maps.Marker({
+          position: bigmeadows,
+          map: map,
+          title: "Big Meadows"
+        });
+        marker19.addListener('click', function() {
+          infowindow19.open(map, marker19);
+        });
+
+        var marker20 = new google.maps.Marker({
+          position: littlestony,
+          map: map,
+          title: "Little Stony Man Mountain"
+        });
+        marker20.addListener('click', function() {
+          infowindow20.open(map, marker20);
+        });
+
+        var marker21 = new google.maps.Marker({
+          position: mtrogers,
+          map: map,
+          title: "Mount Rogers"
+        });
+        marker21.addListener('click', function() {
+          infowindow21.open(map, marker21);
+        });
+
+        var marker22 = new google.maps.Marker({
+          position: darkhollow,
+          map: map,
+          title: "Dark Hollow Falls"
+        });
+        marker22.addListener('click', function() {
+          infowindow22.open(map, marker22);
+        });
+
+        var marker23 = new google.maps.Marker({
+          position: marylandheights,
+          map: map,
+          title: "Maryland Heights Trail"
+        });
+        marker23.addListener('click', function() {
+          infowindow23.open(map, marker23);
+        });
+
+        var marker24 = new google.maps.Marker({
+          position: oldrag,
+          map: map,
+          title: "Old Rag"
+        });
+        marker24.addListener('click', function() {
+          infowindow24.open(map, marker24);
+        });
+
+        var marker25 = new google.maps.Marker({
+          position: tinkers,
+          map: map,
+          title: "Tinker Cliffs"
+        });
+        marker25.addListener('click', function() {
+          infowindow25.open(map, marker25);
+        });
+
+        var marker26 = new google.maps.Marker({
+          position: channels,
+          map: map,
+          title: "Great Channels"
+        });
+        marker26.addListener('click', function() {
+          infowindow26.open(map, marker26);
+        });
+
+        var marker27 = new google.maps.Marker({
+          position: crabtree,
+          map: map,
+          title: "Crabtree Falls"
+        });
+        marker27.addListener('click', function() {
+          infowindow27.open(map, marker27);
+        });
+
+        var marker28 = new google.maps.Marker({
+          position: buffalomtn,
+          map: map,
+          title: "Buffalo Mountain"
+        });
+        marker28.addListener('click', function() {
+          infowindow28.open(map, marker28);
+        });
+
+        var marker29 = new google.maps.Marker({
+          position: hangingrockob,
+          map: map,
+          title: "Hanging Rock Observatory"
+        });
+        marker29.addListener('click', function() {
+          infowindow29.open(map, marker29);
+        });
+
+        var marker30 = new google.maps.Marker({
+          position: endless,
+          map: map,
+          title: "Endless Wall Trail"
+        });
+        marker30.addListener('click', function() {
+          infowindow30.open(map, marker30);
+        });
+
+        var marker31 = new google.maps.Marker({
+          position: cathederal,
+          map: map,
+          title: "Cathedral Falls"
+        });
+        marker31.addListener('click', function() {
+          infowindow31.open(map, marker31);
+        });
+
+        var marker32 = new google.maps.Marker({
+          position: marbleyard,
+          map: map,
+          title: "Devil's Marbleyard"
+        });
+        marker32.addListener('click', function() {
+          infowindow32.open(map, marker32);
+        });
+
+        var marker33 = new google.maps.Marker({
+          position: moore,
+          map: map,
+          title: "Moore's Knob"
+        });
+        marker33.addListener('click', function() {
+          infowindow33.open(map, marker33);
+        });
+
+        var marker34 = new google.maps.Marker({
+          position: hanging,
+          map: map,
+          title: "Hanging Rock"
+        });
+        marker34.addListener('click', function() {
+          infowindow34.open(map, marker34);
+        });
+
+        var marker35 = new google.maps.Marker({
+          position: sandcave,
+          map: map,
+        });
+        marker35.addListener('click', function() {
+          infowindow35.open(map, marker35);
+        });
+
+        var marker36 = new google.maps.Marker({
+          position: iceland,
+          map: map,
+        });
+
+                var marker37 = new google.maps.Marker({
+          position: iceland1,
+          map: map,
+        });
+        var marker38 = new google.maps.Marker({
+          position: iceland2,
+          map: map,
+        });
+        var marker39 = new google.maps.Marker({
+          position: iceland3,
+          map: map,
+        });
+        var marker40 = new google.maps.Marker({
+          position: iceland4,
+          map: map,
+        });
+        var marker41 = new google.maps.Marker({
+          position: iceland5,
+          map: map,
+        });
+        var marker42 = new google.maps.Marker({
+          position: iceland6,
+          map: map,
+        });
+        var marker43 = new google.maps.Marker({
+          position: iceland7,
+          map: map,
+        });
+        var marker44 = new google.maps.Marker({
+          position: iceland8,
+          map: map,
+        });
+        var marker45 = new google.maps.Marker({
+          position: iceland9,
+          map: map,
+        });
+        var marker46 = new google.maps.Marker({
+          position: iceland10,
+          map: map,
+        });
+        var marker47 = new google.maps.Marker({
+          position: iceland11,
+          map: map,
+        });
+        var marker48 = new google.maps.Marker({
+          position: iceland12,
+          map: map,
+        });
+        var marker49 = new google.maps.Marker({
+          position: iceland13,
+          map: map,
+        });
+        var marker50 = new google.maps.Marker({
+          position: iceland14,
+          map: map,
+        });
+        var marker51 = new google.maps.Marker({
+          position: sevilla,
+          map: map,
+        });
+        var marker52 = new google.maps.Marker({
+          position: sevilla1,
+          map: map,
+        });
+        var marker53 = new google.maps.Marker({
+          position: sevilla2,
+          map: map,
+        });
+        var marker54 = new google.maps.Marker({
+          position: tangier,
+          map: map,
+        });
+        var marker55 = new google.maps.Marker({
+          position: chef,
+          map: map,
+        });
+        var marker56 = new google.maps.Marker({
+          position: chef1,
+          map: map,
+        });
+        var marker57 = new google.maps.Marker({
+          position: chef2,
+          map: map,
+        });
+        var marker58 = new google.maps.Marker({
+          position: asilah,
+          map: map,
+        });
+        var marker59 = new google.maps.Marker({
+          position: asilah2,
+          map: map,
+        });
+        var marker60 = new google.maps.Marker({
+          position: madrid,
+          map: map,
+        });
+        var marker61 = new google.maps.Marker({
+          position: amsterdam1,
+          map: map,
+        });
+        var marker62 = new google.maps.Marker({
+          position: amsterdam,
+          map: map,
+        });
+        var marker63 = new google.maps.Marker({
+          position: calgary,
+          map: map,
+        });
+        var marker64 = new google.maps.Marker({
+          position: banff,
+          map: map,
+        });
+        var marker65 = new google.maps.Marker({
+          position: banff1,
+          map: map,
+        });
+        var marker66 = new google.maps.Marker({
+          position: banff2,
+          map: map,
+        });
+        var marker67 = new google.maps.Marker({
+          position: banff3,
+          map: map,
+        });
+        var marker68 = new google.maps.Marker({
+          position: banff4,
+          map: map,
+        });
+        var marker69 = new google.maps.Marker({
+          position: banff5,
+          map: map,
+        });
+        var marker70 = new google.maps.Marker({
+          position: banff6,
+          map: map,
+        });
+        var marker71 = new google.maps.Marker({
+          position: banff7,
+          map: map,
+        });
+        var marker72 = new google.maps.Marker({
+          position: banff8,
+          map: map,
+        });
+        var marker73 = new google.maps.Marker({
+          position: banff9,
+          map: map,
+        });
+        var marker74 = new google.maps.Marker({
+          position: banff10,
+          map: map,
+        });
+        var marker75 = new google.maps.Marker({
+          position: banff11,
+          map: map,
+        });
+        var marker76 = new google.maps.Marker({
+          position: philipines1,
+          map: map,
+        });
+        var marker77 = new google.maps.Marker({
+          position: philipines,
+          map: map,
+        });
+        var marker78 = new google.maps.Marker({
+          position: japan,
+          map: map,
+        });
+        var marker79 = new google.maps.Marker({
+          position: japan1,
+          map: map,
+        });
+        var marker80 = new google.maps.Marker({
+          position: japan2,
+          map: map,
+        });
+        var marker81 = new google.maps.Marker({
+          position: korea,
+          map: map,
+        });
+        var marker82 = new google.maps.Marker({
+          position: korea1,
+          map: map,
+        });
+        var marker83 = new google.maps.Marker({
+          position: korea2,
+          map: map,
+        });
+        var marker84 = new google.maps.Marker({
+          position: korea3,
+          map: map,
+        });
+        var marker85 = new google.maps.Marker({
+          position: korea4,
+          map: map,
+        });
+        var marker86 = new google.maps.Marker({
+          position: korea5,
+          map: map,
+        });
+        var marker87 = new google.maps.Marker({
+          position: china,
+          map: map,
+        });
+        var marker88 = new google.maps.Marker({
+          position: china1,
+          map: map,
+        });
+        var marker89 = new google.maps.Marker({
+          position: china2,
+          map: map,
+        });
+
+
+
+
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCmIRRZ0LEhB3h2mj0yu22-35k2yHw1eA&callback=initMap" async defer></script>
+
+
+  </body>
+
+</html>

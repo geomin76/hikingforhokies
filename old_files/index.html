@@ -1,0 +1,1333 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Hiking for Hokies</title>
+  <link rel="icon" href="https://farm5.staticflickr.com/4340/36474271603_5157b1f01b_m.jpg">
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta charset="utf-8">
+  <script>
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-106378164-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <style>
+    #map {
+      height: 100%;
+    }
+
+    header {
+      color: black;
+      font-family: 'PT Sans', sans-serif;
+      font-size: 18px;
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#deefff+0,98bede+100;Blue+3D+%2310 */
+      background: #deefff;
+      /* Old browsers */
+      background: -moz-linear-gradient(top, #deefff 0%, #98bede 100%);
+      /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, #deefff 0%, #98bede 100%);
+      /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, #deefff 0%, #98bede 100%);
+      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#deefff', endColorstr='#98bede', GradientType=0);
+      /* IE6-9 */
+      text-align: center;
+      padding: 0.1em;
+      vertical-align: middle;
+      height: normal;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      float: left;
+      padding: 1em;
+    }
+
+
+    p {
+      margin: 1px;
+      line-height: 18px;
+      font-size: 13px;
+    }
+
+    h3 {
+      margin: 1px;
+      line-height: 18px;
+      font-size: 13px;
+    }
+
+    .black_overlay {
+      display: none;
+      position: absolute;
+      top: 0%;
+      left: 0%;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      z-index: 1001;
+      -moz-opacity: 0.8;
+      opacity: .80;
+      filter: alpha(opacity=80);
+    }
+
+    .white_content {
+      display: none;
+      position: relative;
+      width: 310px;
+      margin: auto;
+      padding: 10px;
+      border: 3px solid white;
+      font-size: 16px;
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#deefff+0,98bede+100;Blue+3D+%2310 */
+      background: #deefff;
+      /* Old browsers */
+      background: -moz-linear-gradient(top, #deefff 0%, #98bede 100%);
+      /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, #deefff 0%, #98bede 100%);
+      /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, #deefff 0%, #98bede 100%);
+      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#deefff', endColorstr='#98bede', GradientType=0);
+      /* IE6-9 */
+      z-index: 1002;
+      overflow: auto;
+    }
+
+    .about {
+      padding-right: 20px;
+      float: right;
+    }
+
+    .t {
+      padding-left: 80px;
+      float: center;
+    }
+
+    a:link {
+      text-decoration: none;
+      color: blue;
+    }
+
+    a:visited {
+      color: blue;
+    }
+  </style>
+  </head>
+
+  <body>
+    <header>
+      <div class="t">
+        <img height="42px" src="https://i.imgur.com/Y8eGqeq.png">
+        <div class="about">
+          <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">
+            <font color="black">About</font>
+          </a>
+        </div>
+      </div>
+
+      <div id="light" class="white_content">
+        <p style="text-align:right">
+          <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none' ">
+            <i class="large material-icons">highlight_off</i>
+          </a>
+
+          <p>
+            Since most VT students only hike in a few locations, I coded this website to help students visit new places near Virginia Tech. Simply click a marker, read about the location, and click the link to get directions to the starting point of the hike! Thank
+            you for using this website to pick your next adventure!
+          </p>
+          <br>
+          </br>
+
+          <div class="bio" style="margin:auto">
+            <nav><img width="125px" height="125px" src="https://farm5.staticflickr.com/4349/36895376460_d9af31695c_m.jpg"></nav>
+            <p>My name is Geo Min, and I'm a Virginia Tech senior studying Computer Science. Aside from academics, I love hiking, backpacking and photography. If you want to see my Instagram, <a href="https://www.instagram.com/geomin76/" target="_blank"> click here </a>.
+              If you want to contact me, email me at geom@vt.edu!
+            </p>
+            <p>(Shoutout to Sam Snyder for the logo & shoutout to Jay Park for helping me with this website!)</p>
+        </p>
+        </div>
+
+
+
+      </div>
+      <div id="fade" class="black_overlay"></div>
+    </header>
+
+    <div id="map"></div>
+    <script>
+      var map;
+
+      function initMap() {
+        var windrock = {
+          lat: 37.412191,
+          lng: -80.522801
+        };
+        var baldknob = {
+          lat: 37.354731,
+          lng: -80.538570
+        };
+        var sharptop = {
+          lat: 37.443283,
+          lng: -79.609412
+        };
+        var vt = {
+          lat: 37.227703,
+          lng: -80.422073
+        };
+        var brushcreek = {
+          lat: 37.464858,
+          lng: -81.064068
+        };
+        var roanokeoverlook = {
+          lat: 37.211439,
+          lng: -79.935703
+        };
+        var mcafee = {
+          lat: 37.380033,
+          lng: -80.089914
+        };
+        var fallingsprings = {
+          lat: 37.867556,
+          lng: -79.947090
+        };
+        var newrivercave = {
+          lat: 37.265912,
+          lng: -80.601070
+        };
+        var dragontooth = {
+          lat: 37.378687,
+          lng: -80.156135
+        };
+        var roanokestar = {
+          lat: 37.250683,
+          lng: -79.932331
+        };
+        var cascades = {
+          lat: 37.353782,
+          lng: -80.599246
+        };
+        var compreserve = {
+          lat: 37.237728,
+          lng: -80.460487
+        };
+        var ricefield = {
+          lat: 37.365656,
+          lng: -80.749188
+        };
+        var kirby = {
+          lat: 37.863576,
+          lng: -79.990093
+        };
+        var devil = {
+          lat: 36.817238,
+          lng: -82.622951
+        };
+        var humpback = {
+          lat: 37.968818,
+          lng: -78.896737
+        };
+        var bearfence = {
+          lat: 38.452492,
+          lng: -78.466995
+        };
+        var ravensroost = {
+          lat: 37.933663,
+          lng: -78.952914
+        };
+        var bluehole = {
+          lat: 38.506573,
+          lng: -79.047717
+        };
+        var bigmeadows = {
+          lat: 38.518098,
+          lng: -78.437274
+        };
+        var littlestony = {
+          lat: 38.605713,
+          lng: -78.366406
+        };
+        var darkhollow = {
+          lat: 38.519656,
+          lng: -78.430966
+        };
+        var mtrogers = {
+          lat: 36.634463,
+          lng: -81.509543
+        };
+
+        var kellyknob = {
+          lat: 37.372662,
+          lng: -80.446169
+        };
+        var buffalomtn = {
+          lat: 36.787266,
+          lng: -80.450262
+        };
+        var tinkers = {
+          lat: 37.457585,
+          lng: -80.017309
+        };
+        var marylandheights = {
+          lat: 39.330642,
+          lng: -77.734350
+        };
+        var oldrag = {
+          lat: 38.570506,
+          lng: -78.300058
+        };
+        var channels = {
+          lat: 36.864710,
+          lng: -81.947040
+        };
+        var crabtree = {
+          lat: 35.812166,
+          lng: -82.144015
+        };
+        var hangingrockob = {
+          lat: 37.509848,
+          lng: -80.438016
+        };
+        var endless = {
+          lat:38.059813,
+          lng:-81.049195
+        };
+        var cathederal = {
+          lat:38.154036,
+          lng: -81.179721
+        };
+        var marbleyard = {
+          lat: 37.571126,
+          lng:-79.491629
+        };
+        var moore = {
+          lat: 36.388632,
+          lng:-80.279537
+        };
+        var hanging = {
+          lat: 36.394950,
+          lng:-80.266422
+        };
+        var sandcave = {
+          lat: 36.652154, 
+          lng:-83.435575
+        };
+
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {
+            lat: 37.227671,
+            lng: -80.421984
+          },
+          zoom: 8,
+          options: {gestureHandling: 'greedy'}
+        });
+
+        var iconBase = 'http://maps.google.com/mapfiles/kml/pal2/';
+        var mark = new google.maps.Marker({
+          position: vt,
+          map: map,
+          icon: iconBase + 'icon10.png'
+        });
+
+
+        var contentString = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          '<h2 id="firstHeading" class="firstHeading">Wind Rock</h2>' +
+
+          '<img width = "200px" height = "125px" src = "https://farm6.staticflickr.com/5647/30438415171_4d655269b0_z.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>Wind Rock provides a rocky overlook that faces west which makes it perfect for sunsets.</h3>' +
+          '<p>Hiking: 0.5 mile roundtrip</p>' +
+          '<p>Elevation gain: 100 feet</p>' +
+          '<p>Difficulty: Easy</p>' +
+          '<h4>Visit this place! <a href="https://goo.gl/maps/55Arh8rL8dF2" target="_blank">' +
+          'Directions to Wind Rock</a></h4>'
+        '</div>' +
+        '</div>';
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString,
+          maxWidth: 200
+        });
+        var marker = new google.maps.Marker({
+          position: windrock,
+          map: map,
+          title: 'Wind Rock'
+        });
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
+
+        var contentString1 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          '<h2 id="firstHeading" class="firstHeading">Bald Knob</h2>' +
+          '<img width = "200px" height = "125px" src = "https://farm5.staticflickr.com/4334/36818101785_971b8ed660_z.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>Bald Knob is a great spot to explore and see the sunset.</h3>' +
+          '<p>Hiking: 1 mile roundtrip</p>' +
+          '<p>Elevation gain: 400 feet</p>' +
+          '<p>Difficulty: Easy</p>' +
+          '<h4>Visit this place! <a href="https://goo.gl/maps/QvNuNuLmmQw" target="_blank">' +
+          'Directions to Bald Knob</a></h4>'
+        '</div>' +
+        '</div>';
+        var infowindow1 = new google.maps.InfoWindow({
+          content: contentString1,
+          maxWidth: 200
+        });
+        var marker1 = new google.maps.Marker({
+          position: baldknob,
+          map: map,
+          title: 'Bald Knob'
+        });
+        marker1.addListener('click', function() {
+          infowindow1.open(map, marker1);
+        });
+
+
+        var contentString2 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          '<h2 id="firstHeading" class="firstHeading">Sharp Top Mountain</h2>' +
+          '<img width = "200px" height = "125px" src = "https://farm1.staticflickr.com/768/32200734710_71ecb07a82_z.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>Sharp Top Mountain is a hike that has an incredible 360 degree view at the top. </h3>' +
+          '<p>Hiking: 3 mile roundtrip</p>' +
+          '<p>Elevation gain: 1300 feet</p>' +
+          '<p>Difficulty: Difficult</p>' +
+          '<h4>Visit this place! <a href="https://goo.gl/maps/bWQzJANjeo32" target="_blank">' +
+          'Directions to Sharp Top Mountain</a></h4>'
+        '</div>' +
+        '</div>';
+        var infowindow2 = new google.maps.InfoWindow({
+          content: contentString2,
+          maxWidth: 200
+        });
+        var marker2 = new google.maps.Marker({
+          position: sharptop,
+          map: map,
+          title: 'Sharp Top Mountain'
+        });
+        marker2.addListener('click', function() {
+          infowindow2.open(map, marker2);
+        });
+
+
+        var contentString3 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          '<h2 id="firstHeading" class="firstHeading">Brush Creek Falls</h2>' +
+          '<img width = "200px" height = "125px" src = "https://farm1.staticflickr.com/550/32069448730_da9b94327f_z.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>Brush Creek Falls is a hike that leads to an incredible 25 foot waterfall. </h3>' +
+          '<p>Hiking: 1 mile roundtrip</p>' +
+          '<p>Elevation gain: 10 feet</p>' +
+          '<p>Difficulty: Easy</p>' +
+          '<h4>Visit this place! <a href="https://goo.gl/maps/A7sXgVG6Js82" target="_blank">' +
+          'Directions to Brush Creek Falls</a></h4>'
+        '</div>' +
+        '</div>';
+        var infowindow3 = new google.maps.InfoWindow({
+          content: contentString3,
+          maxWidth: 200
+        });
+        var marker3 = new google.maps.Marker({
+          position: brushcreek,
+          map: map,
+          title: 'Brush Creek Falls'
+        });
+        marker3.addListener('click', function() {
+          infowindow3.open(map, marker3);
+        });
+
+
+        var contentString4 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          '<h2 id="firstHeading" class="firstHeading">Roanoke Mountain Overlook</h2>' +
+          '<img width = "200px" height = "125px" src = "https://farm9.staticflickr.com/8345/29802378551_597bf3c7b8_z.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>Roanoke Mountain Overlook provides a great view of the mountains and Roanoke.</h3>' +
+          '<p>There is no hiking involved in this location.</p>' +
+          '<h4>Visit this place! <a href="https://goo.gl/maps/72RK5CpRpyK2" target="_blank">' +
+          'Directions to Roanoke Mountain Overlook</a></h4>'
+        '</div>' +
+        '</div>';
+        var infowindow4 = new google.maps.InfoWindow({
+          content: contentString4,
+          maxWidth: 200
+        });
+        var marker4 = new google.maps.Marker({
+          position: roanokeoverlook,
+          map: map,
+          title: 'Roanoke Mountain Overlook'
+        });
+        marker4.addListener('click', function() {
+          infowindow4.open(map, marker4);
+        });
+
+
+        var contentString5 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          '<h2 id="firstHeading" class="firstHeading">McAfee Knob</h2>' +
+          '<img width = "200px" height = "125px" src = "https://farm2.staticflickr.com/1513/26232122321_1f2dd8e6bd_z.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>McAfee Knob is a great location gives stunning Blue Ridge views. A must-do for VT students. </h3>' +
+          '<p>Hiking: 8.8 miles roundtrip</p>' +
+          '<p>Elevation gain: 1740 feet</p>' +
+          '<p>Difficulty: Moderate</p>' +
+          '<h4>Visit this place! <a href="https://goo.gl/maps/CCwnmTSDrY22" target="_blank">' +
+          'Directions to McAfee Knob</a></h4>'
+        '</div>' +
+        '</div>';
+        var infowindow5 = new google.maps.InfoWindow({
+          content: contentString5,
+          maxWidth: 200
+        });
+        var marker5 = new google.maps.Marker({
+          position: mcafee,
+          map: map,
+          title: 'McAfee Knob'
+        });
+        marker5.addListener('click', function() {
+          infowindow5.open(map, marker5);
+        });
+
+
+        var contentString6 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          '<h2 id="firstHeading" class="firstHeading">Falling Spring Falls</h2>' +
+          '<img width = "200px" height = "125px" src = "https://farm3.staticflickr.com/2907/33216693384_6fa2e20173_z.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>Falling Spring Falls is a popular overlook that shows an 80 foot waterfall.</h3>' +
+          '<p>There is no hiking involved in this location.</p>' +
+          '<h4>Visit this place! <a href="https://goo.gl/maps/woDFHZcQTav" target="_blank">' +
+          'Directions to Falling Spring Falls</a></h4>'
+        '</div>' +
+        '</div>';
+        var infowindow6 = new google.maps.InfoWindow({
+          content: contentString6,
+          maxWidth: 200
+        });
+        var marker6 = new google.maps.Marker({
+          position: fallingsprings,
+          map: map,
+          title: 'Falling Spring Falls'
+        });
+        marker6.addListener('click', function() {
+          infowindow6.open(map, marker6);
+        });
+
+
+        // var contentString7 = '<div id="content">' +
+        //   '<div id="siteNotice">' +
+        //   '</div>' +
+        //   '<h2 id="firstHeading" class="firstHeading">New River Cave</h2>' +
+        //   '<img width = "200px" height = "125px" src = "https://farm1.staticflickr.com/562/32722513371_861168e910_z.jpg">' +
+        //   '<div id="bodyContent">' +
+        //   '<h3>New River Cave is a cave in Giles County with over 7 miles of mapped passage. </h3>' +
+        //   '<p>There is a 0.3 mile hike from the parking lot to the entrance. Practice Leave No Trace, bring extra flashlights and be careful and smart. </p>' +
+        //   '<h4>Visit this place! <a href="https://goo.gl/maps/cJ19chBhhBT2" target="_blank">' +
+        //   'Directions to New River Cave</a></h4>'
+        // '</div>' +
+        // '</div>';
+        // var infowindow7 = new google.maps.InfoWindow({
+        //   content: contentString7,
+        //   maxWidth: 200
+        // });
+        // var marker7 = new google.maps.Marker({
+        //   position: newrivercave,
+        //   map: map,
+        //   title: 'New River Cave'
+        // });
+        // marker7.addListener('click', function() {
+        //   infowindow7.open(map, marker7);
+        // });
+
+
+        var contentString8 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Dragon's Tooth</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm9.staticflickr.com/8342/28984694370_f6953e67a8_z.jpg">' +
+          '<div id="bodyContent">' +
+          "<h3>Dragon's Tooth offers amazing views at the top, along with large boulders to explore. </h3>" +
+          '<p>Hiking: 4.5 mile roundtrip</p>' +
+          '<p>Elevation gain: 1250 feet</p>' +
+          '<p>Difficulty: Moderate</p>' +
+          '<h4>Visit this place! <a href="https://goo.gl/maps/K54GxFVPrWv" target="_blank">' +
+          "Directions to Dragon's Tooth</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow8 = new google.maps.InfoWindow({
+          content: contentString8,
+          maxWidth: 200
+        });
+        var marker8 = new google.maps.Marker({
+          position: dragontooth,
+          map: map,
+          title: "Dragon's Tooth"
+        });
+        marker8.addListener('click', function() {
+          infowindow8.open(map, marker8);
+        });
+
+
+        var contentString9 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Roanoke Star</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm6.staticflickr.com/5538/29885512695_af6b7cc823_z.jpg">' +
+          '<div id="bodyContent">' +
+          "<h3>This star is an iconic symbol of Roanoke and the Blue Ridge Mountains. It is a great and worth-it spot to stop by.</h3>" +
+          '<p>There is no hiking involved in this location.</p>' +
+          '<h4>Visit this place! <a href="https://goo.gl/maps/2piAWkGMfVo" target="_blank">' +
+          "Directions to Roanoke Star</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow9 = new google.maps.InfoWindow({
+          content: contentString9,
+          maxWidth: 200
+        });
+        var marker9 = new google.maps.Marker({
+          position: roanokestar,
+          map: map,
+          title: 'Roanoke Star'
+        });
+        marker9.addListener('click', function() {
+          infowindow9.open(map, marker9);
+        });
+
+
+        var contentString10 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Cascade Falls</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm4.staticflickr.com/3697/33327016032_25a5753e09_z.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This hike leads to a 66 foot waterfall and swimming hole! A must-do for VT students.</h3>' +
+          '<p>Hiking: 2 miles roundtrip</p>' +
+          '<p>Elevation gain: 30 feet</p>' +
+          '<p>Difficulty: Easy</p>' +
+          '<h4>Visit this place! <a href="https://goo.gl/maps/pcP5DaxC13R2" target="_blank">' +
+          "Directions to Cascade Falls</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow10 = new google.maps.InfoWindow({
+          content: contentString10,
+          maxWidth: 200
+        });
+        var marker10 = new google.maps.Marker({
+          position: cascades,
+          map: map,
+          title: "Cascade Falls"
+        });
+        marker10.addListener('click', function() {
+          infowindow10.open(map, marker10);
+        });
+
+
+        var contentString11 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          '<h2 id="firstHeading" class="firstHeading">Community Park and Natural Area</h2>' +
+          '<img width = "200px" height = "125px" src = "https://farm3.staticflickr.com/2552/32272069204_11164f1018_z.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This small park provides scenery, wildlife and picnic areas.</h3>' +
+          '<p>Hiking: 2 miles roundtrip</p>' +
+          '<p>Elevation gain: 30 feet</p>' +
+          '<p>Difficulty: Easy</p>' +
+          '<h4>Visit this place! <a href="https://goo.gl/maps/GDaA37tgfrT2" target="_blank">' +
+          'Directions to Community Park and Natural Area</a></h4>'
+        '</div>' +
+        '</div>';
+        var infowindow11 = new google.maps.InfoWindow({
+          content: contentString11,
+          maxWidth: 200
+        });
+        var marker11 = new google.maps.Marker({
+          position: compreserve,
+          map: map,
+          title: "Community Park and Natural Area"
+        });
+        marker11.addListener('click', function() {
+          infowindow11.open(map, marker11);
+        });
+
+
+        var contentString12 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          '<h2 id="firstHeading" class="firstHeading">Rice Fields</h2>' +
+          '<img width = "200px" height = "125px" src = "https://farm5.staticflickr.com/4408/36370075505_aa20782142_z.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This hike leads to a grassy bald patch on the border of West VA & VA</h3>' +
+          '<p>Hiking: 5 miles roundtrip</p>' +
+          '<p>Elevation gain: 1200 feet</p>' +
+          '<p>Difficulty: Moderate</p>' +
+          '<h4>Visit this place! <a href="https://goo.gl/maps/Zj1FrQHxov42" target="_blank">' +
+          'Directions to Rice Fields</a></h4>'
+        '</div>' +
+        '</div>';
+        var infowindow12 = new google.maps.InfoWindow({
+          content: contentString12,
+          maxWidth: 200
+        });
+        var marker12 = new google.maps.Marker({
+          position: ricefield,
+          map: map,
+          title: 'Rice Fields'
+        });
+        marker12.addListener('click', function() {
+          infowindow12.open(map, marker12);
+        });
+
+
+
+        var contentString13 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Kirby's Bridge</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm5.staticflickr.com/4413/36369834015_66ca1ac934_z.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This hidden bridge is a cool stop that you can quickly check out.</h3>' +
+          '<p>There is no hiking involved in this location.</p>' +
+          '<h4>Visit this place! <a href="https://goo.gl/maps/e2PJNjqrZKJ2" target="_blank">' +
+          "Directions to Kirby's Bridge</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow13 = new google.maps.InfoWindow({
+          content: contentString13,
+          maxWidth: 200
+        });
+        var marker13 = new google.maps.Marker({
+          position: kirby,
+          map: map,
+          title: "Kirby's Bridge"
+        });
+        marker13.addListener('click', function() {
+          infowindow13.open(map, marker13);
+        });
+
+        var contentString14 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Devil's Bathtub</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm5.staticflickr.com/4340/36947356596_c6c8947866_z.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This hike leads to a famous & popular swimming hole (the water is very very cold). </h3>' +
+          '<p>Hiking: 3.2 miles roundtrip</p>' +
+          '<p>Elevation gain: 200 feet</p>' +
+          '<p>Difficulty: Easy</p>' +
+          '<h4>Visit this place! <a href="https://goo.gl/maps/a3uLLD5Zhyp" target="_blank">' +
+          "Directions to Devil's Bathtub</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow14 = new google.maps.InfoWindow({
+          content: contentString14,
+          maxWidth: 200
+        });
+        var marker14 = new google.maps.Marker({
+          position: devil,
+          map: map,
+          title: "Devil's Bathtub"
+        });
+        marker14.addListener('click', function() {
+          infowindow14.open(map, marker14);
+        });
+
+        var contentString15 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Humpback Rocks</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm1.staticflickr.com/768/30975622834_0725904f23_z.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This hike leads to an incredible and popular overlook that is perfect for sunsets and sunrises. </h3>' +
+          '<p>Hiking: 2 miles roundtrip</p>' +
+          '<p>Elevation gain: 900 feet</p>' +
+          '<p>Difficulty: Moderate</p>' +
+          '<h4>Visit this place! <a href="https://goo.gl/maps/ACNGFBXD5Z42" target="_blank">' +
+          "Directions to Humpback Rocks</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow15 = new google.maps.InfoWindow({
+          content: contentString15,
+          maxWidth: 200
+        });
+        var marker15 = new google.maps.Marker({
+          position: humpback,
+          map: map,
+          title: "Humpback Rocks"
+        });
+        marker15.addListener('click', function() {
+          infowindow15.open(map, marker15);
+        });
+
+        var contentString16 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Bearfence Mountain</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm5.staticflickr.com/4366/36168716172_ac05a9e187_z.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This hike leads to an incredible 360 degree overlook. </h3>' +
+          '<p>Hiking: 1.2 miles roundtrip</p>' +
+          '<p>Elevation gain: 380 feet</p>' +
+          '<p>Difficulty: Easy</p>' +
+          '<h4>Visit this place! <a href= "https://goo.gl/maps/3pondUmKMnm" target="_blank">' +
+          "Directions to Bearfence Mountain</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow16 = new google.maps.InfoWindow({
+          content: contentString16,
+          maxWidth: 200
+        });
+        var marker16 = new google.maps.Marker({
+          position: bearfence,
+          map: map,
+          title: "Bearfence Mountain"
+        });
+        marker16.addListener('click', function() {
+          infowindow16.open(map, marker16);
+        });
+
+        var contentString17 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Ravens Roost Overlook</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm5.staticflickr.com/4197/34903340610_8a0c15c5a0_m.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This overlook provides an incredible view of the Blue Ridge Mountains.</h3>' +
+          '<p>There is no hiking involved in this location.</p>' +
+          '<h4>Visit this place! <a href="https://goo.gl/maps/12189VuCTSU2" target="_blank">' +
+          "Directions to Ravens Roost Overlook</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow17 = new google.maps.InfoWindow({
+          content: contentString17,
+          maxWidth: 200
+        });
+        var marker17 = new google.maps.Marker({
+          position: ravensroost,
+          map: map,
+          title: "Ravens Roost Overlook"
+        });
+        marker17.addListener('click', function() {
+          infowindow17.open(map, marker17);
+        });
+
+        var contentString18 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Blue Hole</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm5.staticflickr.com/4294/36200935731_591df3b5c3_m.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This location has an awesome swimming hole!</h3>' +
+          '<p>There is no hiking involved in this location.</p>' +
+          '<h4>Visit this place! <a href="https://goo.gl/maps/S7yievhTRT42" target="_blank">' +
+          "Directions to Blue Hole</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow18 = new google.maps.InfoWindow({
+          content: contentString18,
+          maxWidth: 200
+        });
+        var marker18 = new google.maps.Marker({
+          position: bluehole,
+          map: map,
+          title: "Blue Hole"
+        });
+        marker18.addListener('click', function() {
+          infowindow18.open(map, marker18);
+        });
+
+        var contentString19 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Big Meadows</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm5.staticflickr.com/4358/36464755456_2bb3ac51af_m.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This location has an incredible meadow that is great for everyone!</h3>' +
+          '<p>There is no hiking involved in this location. (There is also really great blueberry ice cream at the visitor center)</p>' +
+          '<h4>Visit this place! <a href="https://goo.gl/maps/XvznSeciDBy" target="_blank">' +
+          "Directions to Big Meadows</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow19 = new google.maps.InfoWindow({
+          content: contentString19,
+          maxWidth: 200
+        });
+        var marker19 = new google.maps.Marker({
+          position: bigmeadows,
+          map: map,
+          title: "Big Meadows"
+        });
+        marker19.addListener('click', function() {
+          infowindow19.open(map, marker19);
+        });
+
+        var contentString20 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Little Stony Man Mountain</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm4.staticflickr.com/3688/33334745685_7f81563797_m.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This hike leads to an awesome view of the Blue Ridge Mountains. </h3>' +
+          '<p>Hiking: 0.9 miles roundtrip</p>' +
+          '<p>Elevation gain: 200 feet</p>' +
+          '<p>Difficulty: Easy</p>' +
+          '<h4>Visit this place! <a href= "https://goo.gl/maps/K3goxZ9CDa52" target="_blank">' +
+          "Directions to Little Stony Man Mountain</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow20 = new google.maps.InfoWindow({
+          content: contentString20,
+          maxWidth: 200
+        });
+        var marker20 = new google.maps.Marker({
+          position: littlestony,
+          map: map,
+          title: "Little Stony Man Mountain"
+        });
+        marker20.addListener('click', function() {
+          infowindow20.open(map, marker20);
+        });
+
+        var contentString21 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Mount Rogers</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm5.staticflickr.com/4358/36474830163_bfa177a03a_m.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This beautiful hike leads to the highest point in Virginia! (There may be wild ponies on the trail too) </h3>' +
+          '<p>Hiking: 8 miles roundtrip</p>' +
+          '<p>Elevation gain: 1100 feet</p>' +
+          '<p>Difficulty: Moderate</p>' +
+          '<h4>Visit this place! <a href= "https://goo.gl/maps/kqdHdF7BmAG2" target="_blank">' +
+          "Directions to Mount Rogers</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow21 = new google.maps.InfoWindow({
+          content: contentString21,
+          maxWidth: 200
+        });
+        var marker21 = new google.maps.Marker({
+          position: mtrogers,
+          map: map,
+          title: "Mount Rogers"
+        });
+        marker21.addListener('click', function() {
+          infowindow21.open(map, marker21);
+        });
+
+
+        var contentString22 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Dark Hollow Falls</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm5.staticflickr.com/4394/36794483380_84fce62707_m.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This popular hike leads to scenic waterfalls with multiple cascades. </h3>' +
+          '<p>Hiking: 1.4 miles roundtrip</p>' +
+          '<p>Elevation gain: 600 feet</p>' +
+          '<p>Difficulty: Easy</p>' +
+          '<h4>Visit this place! <a href= "https://goo.gl/maps/Atf54U9RAmz" target="_blank">' +
+          "Directions to Dark Hollow Falls</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow22 = new google.maps.InfoWindow({
+          content: contentString22,
+          maxWidth: 200
+        });
+        var marker22 = new google.maps.Marker({
+          position: darkhollow,
+          map: map,
+          title: "Dark Hollow Falls"
+        });
+        marker22.addListener('click', function() {
+          infowindow22.open(map, marker22);
+        });
+
+        var contentString23 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Maryland Heights Trail</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm5.staticflickr.com/4316/36061844942_632e69ee0c_m.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This hike has an incredible view of Harpers Ferry, and it has tons of Civil War history. </h3>' +
+          '<p>Hiking: 1.4 miles roundtrip</p>' +
+          '<p>Elevation gain: 1400 feet</p>' +
+          '<p>Difficulty: Moderate</p>' +
+          '<h4>Visit this place! <a href= "https://goo.gl/maps/NBfc4iWPAYG2" target="_blank">' +
+          "Directions to Maryland Heights Trail</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow23 = new google.maps.InfoWindow({
+          content: contentString23,
+          maxWidth: 200
+        });
+        var marker23 = new google.maps.Marker({
+          position: marylandheights,
+          map: map,
+          title: "Maryland Heights Trail"
+        });
+        marker23.addListener('click', function() {
+          infowindow23.open(map, marker23);
+        });
+
+        var contentString24 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Old Rag</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm8.staticflickr.com/7549/15676952939_5d7409af56_m.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This loop is one of the best views and hikes in Shenandoah National Park. </h3>' +
+          '<p>Hiking: 9 miles loop</p>' +
+          '<p>Elevation gain: 2500 feet</p>' +
+          '<p>Difficulty: Hard</p>' +
+          '<h4>Visit this place! <a href= "https://goo.gl/maps/aReyyKeZc242" target="_blank">' +
+          "Directions to Old Rag</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow24 = new google.maps.InfoWindow({
+          content: contentString24,
+          maxWidth: 200
+        });
+        var marker24 = new google.maps.Marker({
+          position: oldrag,
+          map: map,
+          title: "Old Rag"
+        });
+        marker24.addListener('click', function() {
+          infowindow24.open(map, marker24);
+        });
+
+        var contentString25 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Tinker Cliffs</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm2.staticflickr.com/1703/25693333414_6e8931ab33_m.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This hike is a less-known location with awesome views and cliffs. </h3>' +
+          '<p>Hiking: 8 miles roundtrip</p>' +
+          '<p>Elevation gain: 2000 feet</p>' +
+          '<p>Difficulty: Moderate</p>' +
+          '<h4>Visit this place! <a href= "https://goo.gl/maps/8ujQD4MUS1o" target="_blank">' +
+          "Directions to Tinker Cliffs</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow25 = new google.maps.InfoWindow({
+          content: contentString25,
+          maxWidth: 200
+        });
+        var marker25 = new google.maps.Marker({
+          position: tinkers,
+          map: map,
+          title: "Tinker Cliffs"
+        });
+        marker25.addListener('click', function() {
+          infowindow25.open(map, marker25);
+        });
+
+        var contentString26 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Great Channels</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm5.staticflickr.com/4514/37543159122_76b7d64407_m.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>Explore this unique 400 million year old sandstone maze! </h3>' +
+          '<p>Hiking: 6 miles roundtrip</p>' +
+          '<p>Elevation gain: 1200 feet</p>' +
+          '<p>Difficulty: Moderate</p>' +
+          '<h4>Visit this place! <a href= "https://goo.gl/maps/p754DcBDT3J2" target="_blank">' +
+          "Directions to Great Channels</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow26 = new google.maps.InfoWindow({
+          content: contentString26,
+          maxWidth: 200
+        });
+        var marker26 = new google.maps.Marker({
+          position: channels,
+          map: map,
+          title: "Great Channels"
+        });
+        marker26.addListener('click', function() {
+          infowindow26.open(map, marker26);
+        });
+
+        var contentString27 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Crabtree Falls</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm5.staticflickr.com/4498/37321420560_de0927d474_m.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>The North Carolina hike leads to an incredible 70 foot waterfall. </h3>' +
+          '<p>Hiking: 2.4 miles roundtrip</p>' +
+          '<p>Elevation gain: 480 feet</p>' +
+          '<p>Difficulty: Easy</p>' +
+          '<h4>Visit this place! <a href= "https://goo.gl/maps/tk4dGFBekKq" target="_blank">' +
+          "Directions to Crabtree Falls</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow27 = new google.maps.InfoWindow({
+          content: contentString27,
+          maxWidth: 200
+        });
+        var marker27 = new google.maps.Marker({
+          position: crabtree,
+          map: map,
+          title: "Crabtree Falls"
+        });
+        marker27.addListener('click', function() {
+          infowindow27.open(map, marker27);
+        });
+
+        var contentString28 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Buffalo Mountain</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm5.staticflickr.com/4585/37634006804_b01180b9e7_m.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This hike gives incredible 360 degree views with tons of area to explore. </h3>' +
+          '<p>Hiking: 2 miles roundtrip</p>' +
+          '<p>Elevation gain: 700 feet</p>' +
+          '<p>Difficulty: Easy</p>' +
+          '<h4>Visit this place! <a href= "https://goo.gl/maps/zEoGbJE51N82" target="_blank">' +
+          "Directions to Buffalo Mountain</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow28 = new google.maps.InfoWindow({
+          content: contentString28,
+          maxWidth: 200
+        });
+        var marker28 = new google.maps.Marker({
+          position: buffalomtn,
+          map: map,
+          title: "Buffalo Mountain"
+        });
+        marker28.addListener('click', function() {
+          infowindow28.open(map, marker28);
+        });
+
+        var contentString29 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Hanging Rock Observatory</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm5.staticflickr.com/4747/39466066694_18913f4fd4_z.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This hike gives incredible 360 degree views as well as an old fire tower. </h3>' +
+          '<p>Hiking: 2 miles roundtrip</p>' +
+          '<p>Elevation gain: 500 feet</p>' +
+          '<p>Difficulty: Easy</p>' +
+          '<h4>Visit this place! <a href= "https://goo.gl/maps/VgUZgKiEJeD2" target="_blank">' +
+          "Directions to Hanging Rock Observatory</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow29 = new google.maps.InfoWindow({
+          content: contentString29,
+          maxWidth: 200
+        });
+        var marker29 = new google.maps.Marker({
+          position: hangingrockob,
+          map: map,
+          title: "Hanging Rock Observatory"
+        });
+        marker29.addListener('click', function() {
+          infowindow29.open(map, marker29);
+        });
+
+        var contentString30 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Endless Wall Trail</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm1.staticflickr.com/981/28149005348_853d257fcd_z.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This hike gives incredible cliff views in the New River Gorge. </h3>' +
+          '<p>Hiking: 4.5 miles roundtrip</p>' +
+          '<p>Elevation gain: 275 feet</p>' +
+          '<p>Difficulty: Easy</p>' +
+          '<h4>Visit this place! <a href= "https://goo.gl/maps/xP4hRuvPpK82" target="_blank">' +
+          "Directions to Endless Wall Trail</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow30 = new google.maps.InfoWindow({
+          content: contentString30,
+          maxWidth: 200
+        });
+        var marker30 = new google.maps.Marker({
+          position: endless,
+          map: map,
+          title: "Endless Wall Trail"
+        });
+        marker30.addListener('click', function() {
+          infowindow30.open(map, marker30);
+        });
+
+        var contentString31 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Cathedral Falls</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm1.staticflickr.com/909/41121722255_69d6ac3b43_z.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This location has a hidden waterfall gem in West Virginia. </h3>' +
+          '<p>There is no hiking involved in this location.</p>' +
+          '<h4>Visit this place! <a href= "https://goo.gl/maps/QZC2LsPb2X72" target="_blank">' +
+          "Directions to Cathedral Falls</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow31 = new google.maps.InfoWindow({
+          content: contentString31,
+          maxWidth: 200
+        });
+        var marker31 = new google.maps.Marker({
+          position: cathederal,
+          map: map,
+          title: "Cathedral Falls"
+        });
+        marker31.addListener('click', function() {
+          infowindow31.open(map, marker31);
+        });
+
+        var contentString32 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Devil's Marbleyard</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm1.staticflickr.com/978/40891670635_45bda4389e_z.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This rock scramble is a difficult but fun hike with great views. </h3>' +
+          '<p>Hiking: 8.3 miles roundtrip</p>' +
+          '<p>Elevation gain: 1510 feet</p>' +
+          '<p>Difficulty: Difficult</p>' +
+          '<h4>Visit this place! <a href= "https://goo.gl/maps/uPeBRi3zKbv" target="_blank">' +
+          "Directions to Devil's Marbleyard</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow32 = new google.maps.InfoWindow({
+          content: contentString32,
+          maxWidth: 200
+        });
+        var marker32 = new google.maps.Marker({
+          position: marbleyard,
+          map: map,
+          title: "Devil's Marbleyard"
+        });
+        marker32.addListener('click', function() {
+          infowindow32.open(map, marker32);
+        });
+
+        var contentString33 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Moore's Knob</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm1.staticflickr.com/819/40449746564_505e6c666d_z.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This hike is an easy hike with great views. </h3>' +
+          '<p>Hiking: 4.3 miles roundtrip</p>' +
+          '<p>Elevation gain: 900 feet</p>' +
+          '<p>Difficulty: Easy</p>' +
+          '<h4>Visit this place! <a href= "https://goo.gl/maps/qBZFfzqfTuP2" target="_blank">' +
+          "Directions to Moore's Knob</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow33 = new google.maps.InfoWindow({
+          content: contentString33,
+          maxWidth: 200
+        });
+        var marker33 = new google.maps.Marker({
+          position: moore,
+          map: map,
+          title: "Moore's Knob"
+        });
+        marker33.addListener('click', function() {
+          infowindow33.open(map, marker33);
+        });
+
+        var contentString34 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Hanging Rock</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm1.staticflickr.com/793/26289743457_b74a406bd7_z.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This steep hike is an iconic sunset view at Hanging Rock State Park. </h3>' +
+          '<p>Hiking: 2.6 miles roundtrip</p>' +
+          '<p>Elevation gain: 600 feet</p>' +
+          '<p>Difficulty: Moderate</p>' +
+          '<h4>Visit this place! <a href= "https://goo.gl/maps/SiTFDDVG2vC2" target="_blank">' +
+          "Directions to Hanging Rock</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow34 = new google.maps.InfoWindow({
+          content: contentString34,
+          maxWidth: 200
+        });
+        var marker34 = new google.maps.Marker({
+          position: hanging,
+          map: map,
+          title: "Hanging Rock"
+        });
+        marker34.addListener('click', function() {
+          infowindow34.open(map, marker34);
+        });
+
+        var contentString35 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          "<h2 id='firstHeading' class='firstHeading'>Sand Cave</h2>" +
+          '<img width = "200px" height = "125px" src = "https://farm5.staticflickr.com/4386/36237746653_ee4ae192e1_z.jpg">' +
+          '<div id="bodyContent">' +
+          '<h3>This steep hike leads to an incredible Sand Cave! </h3>' +
+          '<p>Hiking: 8.0 miles roundtrip</p>' +
+          '<p>Elevation gain: 2000 feet</p>' +
+          '<p>Difficulty: Difficult</p>' +
+          '<h4>Visit this place! <a href= "https://goo.gl/maps/ttcYXvoLApx" target="_blank">' +
+          "Directions to Sand Cave</a></h4>"
+        '</div>' +
+        '</div>';
+        var infowindow35 = new google.maps.InfoWindow({
+          content: contentString35,
+          maxWidth: 200
+        });
+        var marker35 = new google.maps.Marker({
+          position: sandcave,
+          map: map,
+          title: "Sand Cave"
+        });
+        marker35.addListener('click', function() {
+          infowindow35.open(map, marker35);
+        });
+
+
+      }
+    </script>
+    <!-- <script src="secrets.js"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCmIRRZ0LEhB3h2mj0yu22-35k2yHw1eA&callback=initMap" async defer></script>
+
+  </body>
+
+</html>

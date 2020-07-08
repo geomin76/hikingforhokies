@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import { apiKey } from './secrets'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import styles from './style.module.css';
-import { ExternalLink } from 'react-external-link';
 
 const mapStyles = {
   width: '100%',
