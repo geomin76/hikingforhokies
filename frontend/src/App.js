@@ -75,18 +75,16 @@ export class MapContainer extends Component {
             )
           }
 
-          {/* css */}
-
       <InfoWindow
         marker={this.state.activeMarker}
         visible={this.state.showingInfoWindow}
         onClose={this.onClose}
       >
         <div>
-          <div style={{fontSize:13, marginTop:-15, marginBottom:-5, width:200, lineHeight:1.4}}>
+          <div style={{fontSize:13, marginTop:-10, marginBottom:0, width:200, lineHeight:1.4}}>
             <h3>{this.state.selectedPlace.name}</h3>
             <img style={{ height:125, width:200}} src={this.state.selectedPlace.img}/>
-            <h5 style={{fontSize:13, width:200, lineHeight:1.4}}>{this.state.selectedPlace.desc}</h5>
+            <h5 style={{fontSize:13, width:200, lineHeight:1.4, marginTop:0, marginBottom:0}}>{this.state.selectedPlace.desc}</h5>
             {this.state.selectedPlace.dist ?
           <div style={{fontSize:12, lineHeight:0.2}}>
             <p>Hiking: {this.state.selectedPlace.dist}</p>
