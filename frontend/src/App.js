@@ -7,27 +7,17 @@ const mapStyles = {
   height: '100%'
 };
 
-let data = [];
-
-async function getData() {
-  await fetch("http://ec2-100-26-161-255.compute-1.amazonaws.com:5000/getData")
-  .then(res => res.json())
-  .then(
-    (result) => {
-      // console.log(result)
-      data = result
-    }
-  )
-}
-
-getData()
 
 export class MapContainer extends Component {
-  state = {
-    showingInfoWindow: false,  //Hides or the shows the infoWindow
-    activeMarker: {},          //Shows the active marker upon click
-    selectedPlace: {}       //Shows the infoWindow to the selected place upon a marker
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      showingInfoWindow: false,  //Hides or the shows the infoWindow
+      activeMarker: {},          //Shows the active marker upon click
+      selectedPlace: {},       //Shows the infoWindow to the selected place upon a marker
+      data: []
+    };
+  }
 
   onMarkerClick = (props, marker, e) =>
   this.setState({
@@ -45,9 +35,22 @@ export class MapContainer extends Component {
     }
   };
 
+  componentDidMount() {
+    fetch("http://ec2-100-26-161-255.compute-1.amazonaws.com:5000/getData")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            data: result
+          })
+        }
+      )
+  }
+
 
 
   render() {
+
     return (
       <Map
         google={this.props.google}
@@ -60,7 +63,7 @@ export class MapContainer extends Component {
         >
 
           {
-            data.map((x) => 
+            this.state.data.map((x) => 
             <Marker 
             onClick={this.onMarkerClick}
             name={x.title}
