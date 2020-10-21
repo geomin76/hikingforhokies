@@ -19,6 +19,18 @@ export class MapContainer extends Component {
     };
   }
 
+  componentDidMount() {
+    fetch("http://ec2-100-26-161-255.compute-1.amazonaws.com:5000/getData")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            data: result
+          })
+        }
+      )
+  }
+
   onMarkerClick = (props, marker, e) =>
   this.setState({
     selectedPlace: props,
@@ -35,17 +47,6 @@ export class MapContainer extends Component {
     }
   };
 
-  componentDidMount() {
-    fetch("http://ec2-100-26-161-255.compute-1.amazonaws.com:5000/getData")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            data: result
-          })
-        }
-      )
-  }
 
   render() {
 
