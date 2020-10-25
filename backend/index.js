@@ -14,7 +14,23 @@ app.get('/', (req, res) => {
     res.send("Hello, World!")
 })
 
-const connectionString = "mongodb+srv://" + secrets.user + ":" + secrets.pass +"@" + secrets.cluster + "/test?retryWrites=true&w=majority"
+
+app.get('/getData', (req, res) => {
+    const connectionString = "mongodb+srv://" + process.env.USER + ":" + process.env.PASS +"@" + process.env.CLUSTER + "/test?retryWrites=true&w=majority"
+    MongoClient.connect(connectionString, { useUnifiedTopology: true })
+    .then(client => {
+        console.log('Connected to Database')
+        const db = client.db('hikingforhokies');
+        // res.json(JSON.stringify(db.collection("places").find()))
+        db.collection("places").find().toArray((err, result) => {
+            res.json(result)
+        })
+    })
+}) 
+
+
+
+const connectionString = "mongodb+srv://" + process.env.USER + ":" + process.env.PASS +"@" + process.env.CLUSTER + "/test?retryWrites=true&w=majority"
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
   .then(client => {
     console.log('Connected to Database')
@@ -65,20 +81,20 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     }
 
 
-    app.get('/getData', (req, res) => {
-        // res.json(JSON.stringify(db.collection("places").find()))
-        db.collection("places").find().toArray((err, result) => {
-            res.json(result)
-        })
-    }) 
+    // app.get('/getData', (req, res) => {
+    //     // res.json(JSON.stringify(db.collection("places").find()))
+    //     db.collection("places").find().toArray((err, result) => {
+    //         res.json(result)
+    //     })
+    // }) 
 
   })
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`App listening on port ${PORT}`);
-    console.log('Run http://localhost:5000')
-    console.log('Press Ctrl+C to quit.');
-})
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => {
+//     console.log(`App listening on port ${PORT}`);
+//     console.log('Run http://localhost:5000')
+//     console.log('Press Ctrl+C to quit.');
+// })
 
 module.exports = app;
