@@ -15,12 +15,14 @@ export class MapContainer extends Component {
       showingInfoWindow: false,  //Hides or the shows the infoWindow
       activeMarker: {},          //Shows the active marker upon click
       selectedPlace: {},       //Shows the infoWindow to the selected place upon a marker
-      data: []
+      data: [],
+      error: null
     };
   }
 
   async componentDidMount() {
-    await fetch("http://ec2-100-26-161-255.compute-1.amazonaws.com:5000/getData")
+    try {
+      await fetch("https://7jcoc9toyk.execute-api.us-east-1.amazonaws.com/dev/getData")
       .then(res => res.json())
       .then(
         (result) => {
@@ -29,6 +31,13 @@ export class MapContainer extends Component {
           })
         }
       )
+    }
+    catch(err) {
+      console.log(err)
+      this.setState({
+        error: err
+      })
+    }
   }
 
   onMarkerClick = (props, marker, e) =>
@@ -49,6 +58,11 @@ export class MapContainer extends Component {
 
 
   render() {
+
+    if (this.state.error) {
+      console.log(this.state.error)
+      throw this.state.error;
+    }
 
     return (
       <Map
@@ -101,8 +115,6 @@ export class MapContainer extends Component {
         </div>
         
       </InfoWindow>
-
-
 
       </Map>
     );
